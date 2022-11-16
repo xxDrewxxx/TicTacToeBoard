@@ -16,3 +16,32 @@ class TicTacToeBoardTest : public ::testing::Test
 
 
 
+
+TEST(TicTacToeBoardTest, smoke_test)
+{
+    ASSERT_TRUE(true);
+}
+
+TEST(TicTacToeBoardTest, test_1) {
+	TicTacToeBoard obj;
+	obj.toggleTurn();
+	// Piece turn = O;
+	// toggleTurn();
+	// obj.turn = O;
+}
+
+TEST(TicTacToeBoardTest, test_2) {
+	TicTacToeBoard obj;
+	obj.placePiece(1,3);
+}
+
+TEST(TicTacToeBoardTest, test_3) {
+	TicTacToeBoard obj;
+	obj.getPiece(1,3);
+}
+
+TEST(TicTacToeBoardTest, test_4) {
+	TicTacToeBoard obj;
+	obj.getWinner();
+}
+
