@@ -21,8 +21,10 @@ Piece TicTacToeBoard::toggleTurn()
 {
   // turn = X;
   if (turn == O) {
+    turn = X;
     return X;
-  } else {
+  } else if (turn == X) {
+    turn = O;
     return O;
   }
   
@@ -39,7 +41,26 @@ Piece TicTacToeBoard::toggleTurn()
 **/ 
 Piece TicTacToeBoard::placePiece(int row, int column)
 {
-  return Invalid;
+  if (board[row][column] == Invalid) {
+    return Invalid;
+  }
+
+  if (board[row][column] != Blank) {
+    return board[row][column];
+  }
+
+  if (row <= 2 && row >= 0 && column <= 2 && column >= 0) {
+    board[row][column] = turn;
+    Piece temp = turn;
+    if (turn == X) {
+      turn = O;
+    } else if (turn == O) {
+      turn = X;
+    }
+    return temp;
+  } else {
+    return Invalid;
+  }
 }
 
 /**
@@ -48,7 +69,15 @@ Piece TicTacToeBoard::placePiece(int row, int column)
 **/
 Piece TicTacToeBoard::getPiece(int row, int column)
 {
-  return Invalid;
+  if (board[row][column] == Blank){
+    return Blank;
+  } else if (board[row][column] == X) {
+    return X;
+  } else if (board[row][column] == O) {
+    return O;
+  } else {
+    return Invalid;
+  }
 }
 
 /**
@@ -57,5 +86,73 @@ Piece TicTacToeBoard::getPiece(int row, int column)
 **/
 Piece TicTacToeBoard::getWinner()
 {
-  return Invalid;
+  
+  if (board[0][0] == X && board[0][1] == X && board[0][2] == X) {
+    return X;
+
+  } else if (board[0][0] == X && board[1][0] == X && board[2][0] == X) {
+    return X;
+
+  } else if (board[2][0] == X && board[2][1] == X && board[2][2] == X) {
+    return X;
+
+  } else if (board[0][2] == X && board[1][2] == X && board[2][2] == X) {
+    return X;
+  
+  } else if (board[0][0] == X && board[1][1] == X && board[2][2] == X) {
+    return X;
+  
+  } else if (board[2][0] == X && board[1][1] == X && board[0][2] == X) {
+    return X;
+  
+  } else if (board[0][1] == X && board[1][1] == X && board[2][1] == X) {
+    return X;
+  
+  } else if (board[1][0] == X && board[1][1] == X && board[1][2] == X) {
+    return X;
+
+  } else if (board[0][0] == O && board[0][1] == O && board[0][2] == O) {
+    return O;
+
+  } else if (board[0][0] == O && board[1][0] == O && board[2][0] == O) {
+    return O;
+
+  } else if (board[2][0] == O && board[2][1] == O && board[2][2] == O) {
+    return O;
+
+  } else if (board[0][2] == O && board[1][2] == O && board[2][2] == O) {
+    return O;
+  
+  } else if (board[0][0] == O && board[1][1] == O && board[2][2] == O) {
+    return O;
+  
+  } else if (board[2][0] == O && board[1][1] == O && board[0][2] == O) {
+    return O;
+  
+  } else if (board[0][1] == O && board[1][1] == O && board[2][1] == O) {
+    return O;
+  
+  } else if (board[1][0] == O && board[1][1] == O && board[1][2] == O) {
+    return O;
+
+  } else if (board[0][0] != Blank && 
+             board[0][1] != Blank && 
+             board[0][2] != Blank && 
+             board[1][0] != Blank && 
+             board[1][1] != Blank && 
+             board[1][2] != Blank && 
+             board[2][0] != Blank && 
+             board[2][1] != Blank && 
+             board[2][2] != Blank) 
+  {          
+    return Blank;
+
+  } else {
+    return Invalid;
+  }
+
 }
+
+//(0,0) (0,1) (0,2)
+//(1,0) (1,1) (1,2)
+//(2,0) (2,1) (2,2)

@@ -31,6 +31,8 @@ class TicTacToeBoard
          **/
         Piece toggleTurn();
 
+        Piece displayBoard();
+
         /**
          * Places the piece of the current turn on the board, returns what
          * piece is placed, and toggles which Piece's turn it is. placePiece does 
